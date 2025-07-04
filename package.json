@@ -1,5 +1,5 @@
 {
-  "name": "@omidteimoori/node-red-opcua",
+  "name": "node-red-opcua-otmr",
   "version": "3.0.1",
   "description": "OPCUA communication",
   "main": "opcua-otmr.js",
