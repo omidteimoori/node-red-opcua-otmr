@@ -1,0 +1,15 @@
+# Don't publish dev folders or configs
+.vscode/
+.DS_Store
+.git/
+.gitignore
+
+# Exclude test and flow files
+test/
+flows_*.json
+.settings/
+npm-debug.log*
+*.log
+
+# Exclude documentation if not needed
+README-draft.md
