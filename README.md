@@ -15,7 +15,7 @@ The `@omidteimoori/node-red-opcua` Node-RED node allows seamless communication w
 Run the following command in your Node-RED user directory (typically `~/.node-red`):
 
 ```bash
-npm install @omidteimoori/node-red-opcua
+npm install node-red-opcua-otmr
 ```
 
 Then restart Node-RED. The node will appear in the **function** category as `opcua-otmr`.
