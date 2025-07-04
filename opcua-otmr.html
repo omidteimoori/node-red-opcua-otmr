@@ -7,6 +7,7 @@
             endpoint: { value: "", required: true },
             port: { value: 4840, validate: RED.validators.number(), required: true },
             nodeIds: { value: "", required: true },
+            operation: { value: "read", required: true },
             dataType: { value: "" }
         },
         inputs: 1,
@@ -17,16 +18,15 @@
         },
         oneditprepare: function() {
             $('#node-input-name').val(this.name);
+            $('#node-input-operation').val(this.operation);
             $('#node-input-endpoint').val(this.endpoint);
             $('#node-input-port').val(this.port);
             $('#node-input-nodeIds').val(this.nodeIds);
             $('#node-input-dataType').val(this.dataType);
-
-            $('#node-help').html("<p>This node communicates with an OPC UA server and reads values from various Node IDs.</p>");
-
         },
         oneditsave: function() {
             this.name = $('#node-input-name').val();
+            this.operation = $('#node-input-operation').val();
             this.endpoint = $('#node-input-endpoint').val();
             this.port = $('#node-input-port').val();
             this.nodeIds = $('#node-input-nodeIds').val();
@@ -34,7 +34,7 @@
 
             if (!this.endpoint || !this.port || !this.nodeIds) {
                 RED.notify("Endpoint URL, Port, and Node IDs are required fields.", "error");
-                return false; // Prevents the node from being saved
+                return false;
             }
         }
     });
@@ -42,35 +42,31 @@
 
 <script type="text/html" data-template-name="opcua-otmr">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name">Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-endpoint"><i class="fa fa-wifi"></i> Endpoint</label>
+        <label for="node-input-operation">Operation</label>
+        <select id="node-input-operation">
+            <option value="read">Read</option>
+            <option value="write">Write</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-endpoint">Endpoint</label>
         <input type="text" id="node-input-endpoint" placeholder="opc.tcp://hostname">
     </div>
     <div class="form-row">
-        <label for="node-input-port"><i class="fa fa-hashtag"></i> Port</label>
+        <label for="node-input-port">Port</label>
         <input type="text" id="node-input-port" placeholder="4840">
     </div>
     <div class="form-row">
-        <label for="node-input-nodeIds"><i class="fa fa-list"></i> Node IDs</label>
+        <label for="node-input-nodeIds">Node IDs</label>
         <input type="text" id="node-input-nodeIds" placeholder="NodeID 1, NodeID 2, ...">
     </div>
-    <!--
-    <div class="form-row">
-        <label for="node-input-dataType"><i class="fa fa-database"></i> Data Type</label>
-        <input type="text" id="node-input-dataType" placeholder="Data type 1, Data type 2, ...">
-    </div>
-    -->
-
-    <script type="text/html" data-help-name="opcua-otmr">
-        <p>This node communicates with an OPC UA server and reads values from various Node IDs. Data type of each NodeID will be captured automatically</p>
-    </script>
-    
-
 </script>
 
 <script type="text/html" data-help-name="opcua-otmr">
-    <p>This node communicates with an OPC UA server and reads values from specified Node IDs.</p>
+    <p>This node communicates with an OPC UA server. You can choose to read or write values from specified Node IDs.</p>
+    <p>For write mode, send a simple value in <code>msg.payload</code> (e.g., <code>42</code> or <code>"ON"</code>), and the node will use the configured Node ID and Data Type.</p>
 </script>
