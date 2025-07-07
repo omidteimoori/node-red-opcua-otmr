@@ -24,8 +24,8 @@ Then restart Node-RED. The node will appear in the **function** category as `opc
 
 1. Drag the `opcua-otmr` node into your Node-RED workspace  
 2. Configure:
-   - Endpoint (e.g., `opc.tcp://192.168.0.10:4840`)
-   - Node ID (e.g., `ns=2;s=Temperature`)  
+   - Endpoint (e.g., `opc.tcp://172.21.1.10:4840`)
+   - Node ID (e.g., `ns=3;s="xBG5"`)  
    - Operation: Read, Write, or Subscribe  
 3. Deploy the flow and monitor/debug results
 
