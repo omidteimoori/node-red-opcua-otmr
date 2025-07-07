@@ -1,6 +1,6 @@
 # Node-RED OPCUA-OTMR Node
 
-The `@omidteimoori/node-red-opcua` Node-RED node allows seamless communication with OPC UA servers. It enables you to read, write, and subscribe to values from specific Node IDs — ideal for industrial automation and IoT applications.
+The `node-red-opcua-otmr` Node-RED node allows seamless communication with OPC UA servers. It enables you to read, write, and subscribe to values from specific Node IDs — ideal for industrial automation and IoT applications.
 
 ## Features
 
